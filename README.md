@@ -8,8 +8,14 @@ Todo [29/08/18]
 - [x] ship should just float if you run out of fuel, start timer for about 2 seconds to end game
 - [ ] make station a hexagon and not bright red
 - [ ] collision detection :(
-- [ ] sound?
-- [ ] background design
 - [ ] initial load screen
 - [ ] ship engine flame
 - [ ] randomise start location and position of the station 
+
+
+final design passover
+- [ ] sound?
+- [ ] background design
+- [ ] improve ship and space station assets
+- [ ] ui update
+
