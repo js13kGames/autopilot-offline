@@ -1,0 +1,32 @@
+<canvas id="gameoverlay" style="z-index: 1;"></canvas>
+<canvas id="offline" width="240" height="240"></canvas>
+<style>
+  #offline {
+    position: fixed;
+    width: 99.5vmin;
+    top: 49.9%;
+    left: 49.9%;
+    transform: translateX(-50%)translateY(-50%);
+    background: #50514f;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    z-index: 1;
+  }
+
+  #gameoverlay {
+    position: fixed;
+    width: 99.5vmin;
+    top: 49.9%;
+    left: 49.9%;
+    transform: translateX(-50%)translateY(-50%);
+    background: transparent;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    z-index: 1;
+  }
+</style>
+<script src="game.js "></script>
