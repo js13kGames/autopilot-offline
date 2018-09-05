@@ -3,8 +3,10 @@ function degreesToRadians(degrees) {
 }
 var canvas_overlay = document.getElementById("gameoverlay");
 var canvas = document.getElementById("offline");
+var game_background = document.getElementById("gamebackground");
 var ctx = canvas.getContext("2d");
 var ctx2 = canvas_overlay.getContext("2d");
+var ctx3 = game_background.getContext("2d");
 
 var spaceshipSprite = new Image();
 spaceshipSprite.src =
@@ -40,6 +42,11 @@ spaceshipSprite315.src =
 
 var w = canvas.width;
 var h = canvas.height;
+var starColours = ["#ffffff", "#ffe9c4", "#d4fbff"];
+
+function random(min, max) {
+  return Math.round(Math.random() * max - min + min);
+}
 
 var spaceship = {
   maxSpeed: 2.5,
@@ -93,7 +100,7 @@ function updateSpaceship() {
         spaceship.angle = 0;
       }
       spaceship.angle -= 4;
-      spaceship.eva = spaceship.eva - 0.05;
+      spaceship.eva = spaceship.eva - 0.1;
     }
   }
 
@@ -106,7 +113,7 @@ function updateSpaceship() {
       spaceship.velocity.x += 0.05 * cos;
       spaceship.velocity.y += 0.05 * sin;
     }
-    spaceship.fuel = spaceship.fuel - 0.05;
+    spaceship.fuel = spaceship.fuel - 0.3;
   }
 }
 
@@ -153,51 +160,90 @@ function drawSpaceship() {
 }
 
 function drawFuel() {
-  console.log(spaceship.fuel + " " + spaceship.eva);
-  ctx.rect(w - spaceship.eva, 5, spaceship.eva, 5);
-  ctx.fillStyle = "#FF0000";
-  ctx.fill();
-  ctx.closePath();
-  ctx.rect(w - spaceship.fuel, 15, spaceship.fuel, 5);
-  ctx.fillStyle = "#FF0000";
-  ctx.fill();
-  ctx.closePath();
+  ctx2.rect(w - spaceship.eva, 5, spaceship.eva, 5);
+  ctx2.fillStyle = "#FF0000";
+  ctx2.fill();
+  ctx2.closePath();
+  ctx2.rect(w - spaceship.fuel, 15, spaceship.fuel, 5);
+  ctx2.fillStyle = "#FF0000";
+  ctx2.fill();
+  ctx2.closePath();
 }
 
-function drawcircle(color, r) {
-  ctx.fillStyle = color;
-  ctx.beginPath();
-  ctx.arc(w, 0, r, 0, 2 * Math.PI, true);
-  ctx.closePath();
-  ctx.fill();
+function star_field(context, star_number) {
+  var x, // x position of the star
+    y, // y position of the star
+    brightness, // brightness of the star
+    radius; // radius of the star
+
+  // draw the blank night sky
+  context.fillStyle = "#000";
+
+  // save the previous canvas context state
+  context.save();
+
+  for (var i = 0; i < star_number; i++) {
+    x = Math.random() * w; // random x position
+    y = Math.random() * h; // random y position
+    radius = Math.random() * 1.5; // random radius
+    brightness = random(80, 100) / 100;
+
+    // start drawing the star
+    context.beginPath();
+    // set the brightness of the star
+    context.globalAlpha = brightness;
+    // choose a random star colour
+    context.fillStyle = starColours[random(0, starColours.length)];
+    // draw the star (an arc of radius 2 * pi)
+    context.arc(x, y, radius, 0, Math.PI * 2, true);
+    // fill the star and stop drawing it
+    context.fill();
+    context.closePath();
+  }
+
+  // restore the previous context state
+  context.restore();
 }
 
 function drawSpacstation() {
   // set origin to center
   ctx.translate(w / 2, h / 2);
-  // draw sun
-  // rotate + move along x
+
   ctx.rotate(i / 100);
   ctx.rect(-20, -20, 40, 40);
   ctx.fillStyle = "#FF0000";
   ctx.fill();
   ctx.closePath();
-  ctx.translate(100, 0);
+
+  // rotate + move along x
+
   // draw planet
   ctx.restore();
 }
 
 var i = 0;
+
+function init() {
+  // create a star field
+  star_field(ctx3, 200);
+}
+
+// GO, GO, GO!
+init();
+
 var redraw = function() {
   ctx.save();
   // paint bg
-  ctx.fillStyle = "#000";
-  ctx.fillRect(0, 0, w, h);
+  ctx.clearRect(0, 0, w, h);
 
   updateSpaceship();
   drawSpaceship();
   drawSpacstation();
   drawFuel();
+
+  if (spaceship.fuel <= 0 && spaceship.eva <= 0) {
+    console.log("game over");
+  }
 
   i++;
   window.requestAnimationFrame(redraw);
