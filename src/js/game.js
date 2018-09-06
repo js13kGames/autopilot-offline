@@ -42,6 +42,9 @@ spaceshipSprite315.src =
 
 var w = canvas.width;
 var h = canvas.height;
+var w_ctx = canvas_overlay.width;
+var h_ctx = canvas_overlay.height;
+
 var starColours = ["#ffffff", "#ffe9c4", "#d4fbff"];
 
 function random(min, max) {
@@ -58,6 +61,8 @@ var spaceship = {
     x: 0,
     y: 0
   },
+  height: 18,
+  width: 18,
   angle: 0,
   engineOn: false,
   rotatingLeft: false,
@@ -66,6 +71,8 @@ var spaceship = {
   eva: 50
 };
 function updateSpaceship() {
+  console.log(spaceship.fuel + " " + spaceship.eva);
+
   if (spaceship.position.x < 0) {
     spaceship.position.x = w;
   }
@@ -118,6 +125,7 @@ function updateSpaceship() {
 }
 
 function drawSpaceship() {
+  ctx.clearRect(0, 0, w, h);
   ctx.save();
   ctx.beginPath();
   ctx.translate(spaceship.position.x, spaceship.position.y);
@@ -160,14 +168,17 @@ function drawSpaceship() {
 }
 
 function drawFuel() {
-  ctx2.rect(w - spaceship.eva, 5, spaceship.eva, 5);
-  ctx2.fillStyle = "#FF0000";
-  ctx2.fill();
-  ctx2.closePath();
-  ctx2.rect(w - spaceship.fuel, 15, spaceship.fuel, 5);
-  ctx2.fillStyle = "#FF0000";
-  ctx2.fill();
-  ctx2.closePath();
+  ctx.beginPath();
+  ctx.rect(w_ctx - spaceship.eva, 5, spaceship.eva, 5);
+  ctx.fillStyle = "#FF0000";
+  ctx.fill();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.rect(w_ctx - spaceship.fuel, 15, spaceship.fuel, 5);
+  ctx.fillStyle = "#FF0000";
+  ctx.fill();
+  ctx.closePath();
 }
 
 function star_field(context, star_number) {
@@ -207,6 +218,8 @@ function star_field(context, star_number) {
 
 function drawSpacstation() {
   // set origin to center
+  ctx.beginPath();
+
   ctx.translate(w / 2, h / 2);
 
   ctx.rotate(i / 100);
@@ -215,6 +228,10 @@ function drawSpacstation() {
   ctx.fill();
   ctx.closePath();
 
+  ctx.rect(20, -5, 10, 10);
+  ctx.fillStyle = "#FF00FF";
+  ctx.fill();
+  ctx.closePath();
   // rotate + move along x
 
   // draw planet
@@ -228,18 +245,21 @@ function init() {
   star_field(ctx3, 200);
 }
 
-// GO, GO, GO!
 init();
+
+function collision_detection() {
+  console.log(spaceship.position.x + " " + spaceship.position.y);
+}
 
 var redraw = function() {
   ctx.save();
   // paint bg
-  ctx.clearRect(0, 0, w, h);
 
   updateSpaceship();
   drawSpaceship();
   drawSpacstation();
   drawFuel();
+  collision_detection();
 
   if (spaceship.fuel <= 0 && spaceship.eva <= 0) {
     console.log("game over");
