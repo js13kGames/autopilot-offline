@@ -1,55 +1,48 @@
-function degreesToRadians(degrees) {
-  return (degrees * Math.PI) / 180;
-}
-var canvas_overlay = document.getElementById("gameoverlay");
 var canvas = document.getElementById("offline");
 var game_background = document.getElementById("gamebackground");
 var ctx = canvas.getContext("2d");
-var ctx2 = canvas_overlay.getContext("2d");
 var ctx3 = game_background.getContext("2d");
 
 var spaceshipSprite = new Image();
 spaceshipSprite.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAkklEQVQ4T2NkoBJgpJI5DBgG1aRY/AcZ3jLnBEmWoCiGGQJzJSmGwQ1CNwTZy8QYCDYInyHoYYjLUEZ8hpw5cYPBxEIDZ3wgG4phEEgzDKAbMmXJCYacGAsMg0EGohiEzxCQbpBBIIDNMNoYBLKNKl5D9zxJgU216Ie5gioJEpdhxKRomF7aZFpKihSSigp8FgEA8g1SQRynQiMAAAAASUVORK5CYII=";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAgUlEQVQ4T2NkoBAwUqifAcOAmhSL/y1zThBtMIpCkGaYi4g1BGwAskZ8XsJmKCMuzWdO3GAwsdDAah6yQRgGgDSCALrmKUtOMOTEWKAYCDIIxQBcmkG6QAaAALoh1DUAZANFXkD2INGBSHE0IttKdkJCN4TYVAjSR3Sax5VCKTYAANMHSj/Q7yHfAAAAAElFTkSuQmCC";
 
 var spaceshipSprite90 = new Image();
 spaceshipSprite90.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAoElEQVQ4T2NkwAFqUiz+Y5NqmXOCEZs4VkFchsAMwGYYhkGEDMFlGIpB2Aw5c+IGWK+JhQaGj5BdBjcInyEwE/AZRn2DQLaiuwrkLZgrkNnYwglnYGPTiCyGHnO0iTWYkwklAaLSEbawQo93kg2asuQEihk5MRZgPtEGIbsKZhg+Q0DqseY1fN4jKdNS1SBshuFyDV6vUdUgZMPwuQakDgBXWmMThABYawAAAABJRU5ErkJggg==";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAkElEQVQ4T2NkwAJqUiz+YxNvmXOCEV0cQwCXZphGdEOoawC67WdO3ABbbGKhgeJyZFfAXYBLM0wnLkNQvIBsCMh2mCZkNshArC6A2QQyBF0DSA4mRttABNk0sNGI7IIpS06gRF1OjAWYTzAMsBmCSzNILUZKxBcOROUF5OhE9gM2zThdgM0VJBuAbAguzSA1AEYOWBF3vw7NAAAAAElFTkSuQmCC";
 
 var spaceshipSprite180 = new Image();
 spaceshipSprite180.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAkklEQVQ4T2NkoBJgpJI5DCQbVJNi8R9kecucEyh6STIIZgjMF8iGEWUQugHIwQEzDKdB+DSjhyvIMBSD8Gk+c+IGg4mFBs64ARuEzYApS04w5MRYoGgEGQYD6IYy4jIEpAHdIJAYLsOoZxDVvIYcCBQHNraooCj6ccUtRQmSGFeSnEWwhSNFmRZfkUNUpiWmzAIAtG5KnVb/SQsAAAAASUVORK5CYII=";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAfklEQVQ4T2NkoBAwUqifgSQDalIs/rfMOYGih2gDQJphrkU2BKsByIrxeRFkEIoBuDSeOXGDwcRCA6tZYAPQNU5ZcoIhJ8YCRQPIEBBAN4gRm2aQQnQDQGLYDKHcAIq9gOxRsgMRPXjJjkZ8cU5SQsJlEEVJGZehROcFXAYAAP3nQpsAevEHAAAAAElFTkSuQmCC";
 
 var spaceshipSprite270 = new Image();
 spaceshipSprite270.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAoUlEQVQ4T2NkIABqUiz+g5S0zDnBiE8pXkmYITAD8BlGe4PQXUPIVThdRHWDpiw5AXZMTowFmMYVTlhdBHMNzBCYt/AZhtcgXNGNzVW0MwhXIKO7Dt1VGC6CGXTmxA0GEwsNFP3IYngNQncNskZsBiMbBncRNi+BNCMDdBciJwfqGwQyHZ+r8LkGpBdnYBMqXgjGGi6XIRtMdILEZxiuvAYA0MVjEyb3BAYAAAAASUVORK5CYII=";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAh0lEQVQ4T2NkwANqUiz+g6Rb5pxgxKUMpwRMM0wjLkNoYwC67fhcgdUFVDNgypITYMtzYizANLZwwHABzHaYZpjzcRmC0wBc0YbuikFqwJkTNxhMLDRQfAETw+sF5OhDNgTdQGRD4GGAHvcgTcgA3UUwQ6hnAMg2XK7AZTtIzyCMRmxewZcbAWBPYxOQyKZ7AAAAAElFTkSuQmCC";
 
 var spaceshipSprite45 = new Image();
 spaceshipSprite45.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABM0lEQVQ4T62UwU7CQBCG/8V3Ec9qZPsu3tyjb0A9WXgFDpSzCS8iksbEC4GLjyHY0B0ySxamdrtIQpMm3enM13//nanChS51IQ6CoNT0CIFXnPyaz4I1jWBqNMVVKmT5e6OuFngxmjzF2v2TUnwf09pUHTLkdn7WJRZf3w50r29qAhk/CGzvAOobTbxgJZ/zVWN3EpjFQQkpUCtIqouCvMlE5DwpZkun6vbh2q2lTxz/CxMeHU9Lbu+u161BKku46ijXHLIVgiBvEKuSoN9yi/G0wPOjhoXCULRBFCQd35Rb5NPChRjElzzBls5OyHvF6VVlMXqb1yD7jxCy/MMxTs4aH4IlQkc0pVTqTT8J4qL0KSELhoWHh2H/Avny0BzyTA0mZ4KkntQkbhj9AJ+lKPZX2AFWpoYTnQlTjwAAAABJRU5ErkJggg==";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABIUlEQVQ4T6WTTU7DMBCFn9u7AGuKqHMXdnjJDRpWBK7AguyRehFKFSGxQWXDMfiJGg+aaU3HsVOQsBQpHns+v3keG/xzmH5+6aYEJGGJXNWLZCEKlM7SfkEGVf0Q5fxMLp2lkO395s8Y/nb7cypkVct+/2jx8vwmgBN7FAli7HWvDAHMnCX+4ZOflq9JFRpU5QEFGdAgQKvJAoJ5RCQ1N4uVqDg+PZC59oHjGrL1YOe+LmMyPYySO08Yj0x0pQkgGMAqNOCrXeNu3uDizMLD4GZ7nYMA7eRnu0Y9byTEAB7hRjKdWFDwgrd1ncft/TJK3sAJVf2ouiTTgmyuJ8JoYBubmTZ9D1SeF+TBkHyT/woIabl3wr3/Z4A+v3SFPBZ+WN9ckoI92Gl+IwAAAABJRU5ErkJggg==";
 
 var spaceshipSprite135 = new Image();
 spaceshipSprite135.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABKElEQVQ4T62UQW6CQBSG34CxtcdwY+OmSUNavIgLt9BFr9Cyk96gS5beRTDatXqYeeafwPgKMwYT3gKYMP/H/w9vRtFApQbikBeUpTHLj7CZiitTXlQdXW+QhEK0Lsp/2l4gZiau/QXBVZILmBOUpQtGDJTWTBDvy6MZz1+m9DQZ1wavMZ2g7yRmVb9pADLa69vMwFGNq5uOXBCIe4Hk38LaoHD/253NcxQ/m7GqLTsdZcmCNWlizRSGgU0D4aE6WZCM6QR9JTEj+u+mpHQZ0eN4ZDWICTft6oBkJIBQH8uIHgSsDZH9ZBe73ckN7HP1TqHoHawaQqPH82Jr9V6QL4JvbxqQbEA5UZOikLizHVwwD4iN9Z/Wfrp1UthoTTfL/XPPETPYeXQBoWp+EwVmwDMAAAAASUVORK5CYII=";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4T6WTQW7CMBBFx0kFhWOwoWJTCUUlXIQF24QFV4DsGm7AMsvepQEBa9rDeKpvYncSTEBiFkmc+D//cb4VPVnKp8/SmOV7JkzDlSkvdjXNQwAJg+CzKJ3uLoCZiSs/QfA/Pa8gV4AsnTLsorRmguhQns149D6gfq9TGbq0cwVYJzHbt1YoWxh/DA0UBRc3HfjEELUC5O6jdxTup/2veY7iNzNW1bo1B1kyZU2aWDOFYeBcQ3Dc/TiAbKcGWCUxo7XtV0npLKLXzoubi3awerMcQFoHALWYRdQVkKbY5sFsYjN5FrKcTygU/x67guaQybz4NlovwGf11pFRMjhykiZFIXEttj6IB8DG4kbkve3AmhZs+my+2wTNb3+gMH4RrhfvYwAAAABJRU5ErkJggg==";
 
 var spaceshipSprite225 = new Image();
 spaceshipSprite225.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABNklEQVQ4T62UQU7DMBBFvx1UCsdgA2KDhKLiXqQSa8yCK9CyIr1Bl+mOu5BWhTVwFzponExsUidppVqKFNuZ5z/fM1E40lDCmdkx8XuWv9drh5zhgqYPhlQkPMuLvaHuw5k1Tk1zbAnQUMiW/SqD1NpgBK0U+tQFoDsCfCaLt8IJfLofIUk0eI+IoBx0V2EdObWGZCIQO0kxHJx0ei5K/5n5bMekQWDQ4yTFaQVhJR+rb6TmagcaBb1YQ+z675aQaH+GgJhyO7qEDvaioNgNMoSfz/WPU8OqxKuy7soSidaJlMOm+Ir6I6oICvPK+E4QU2IwDwLmXYrCGxRJAry+ucD52aBaJmT5qj01MV0gpU/lTIzm6NeghVpS4waOdk3tWbPSW5uyqcq77tMJb2Lv7u77pRwN9AeZLX8TGq1ymgAAAABJRU5ErkJggg==";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABKklEQVQ4T5WTTU7DMBCF3zio/ByDDYgNUhUV9yKVWGMWXIGWVdMbsAw77tIUQdeFu9BBY2capzFRaymyHOu9+fw8JgCYuTHLXJRLkvmYQdMHy5SQFWV1kBnNnPXV98eWAQNC8dZP5av8b8IwROijqQ3uGGiIX98rD/R0P0KWGcgeM4O8WZvIq6bOsspV7CY5zgYnvXkK2a7ssxuzAUMMHic5TmuxVP5afSO31x2zlsGLsyxp/m4ZmWmOowaiHo6uYKK9lkEqTBHLt/748dWFQrMIfRMdQfn0Rj6rTfL8SsEgLMplt4XiK02ZNAbAIkUQ34giqNHN7SUuzgf1b0ZRrroEGqaKQw5hpQFKxPO61Tv9Hh5Wsrt3mcSdmXww+xRNmgE7TvegF9fXjn/i1X8Rz+3TjgAAAABJRU5ErkJggg==";
 
 var spaceshipSprite315 = new Image();
 spaceshipSprite315.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABKUlEQVQ4T62UTU7DMBCFn30YYN1WxNyFZZbcoO0ucAUWpFsWvUgLipDYINhwDH6ixoPG6aSuHVq3qqVIkeX58t68cRROtNSxnEluiAi4nS0d4yDQODekQEGZQlEuVBJomhtqoKAdJFyJILawy35R9lib5FdOug3EN5Zw//jkeDfXZosbgVj+rk//1is8zKsIFoH6LFTLd4zMRafgp16hnFdOlSXgbp3YVmohiCG8htk5lJdJ01gozY3XKGaLLqzuRUA8HFwooMHlWQfygWJJ5EYgawkvzx+9QbU227jjIVjviKL/QNIrf5p9mKcoIxn0r+8ab6+f7hwDGK61HN2jiIv8hnOxS0Pxs3ES9ibqkWzsm6dkUKss4+xcY9tLulkHgY75tSTd/hTwH+MOhBNcL4PdAAAAAElFTkSuQmCC";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAABHElEQVQ4T6WTTU6EQBCFX/Vh1LVjpL2LS5bewHGHXsGFsHUxFxENMXEz0Y3H8IcMXaaKNNMwPYBaCSQdeF+9+mnCP4P+ol+mlpmB66Kk2YDL1DKBAYQS6p2iZq5Syw0IRsXDmACI1bESszwoYZmeqUU3MNk4xu39o3Iuzm2P1wHE5liq73qDu1W1A+kAMatV+YoTe9Rl/Ko3yFeVunAM3BSldlNfQ4CIJRbJISgYVNM4kJGGGmTFwy5AhisCDzg+PegAIUise2s9B84xnp/eoo1vyyFkeZv5VwDfC799EUDCfsM+PmusX971HxGKK2N80j0Oho0UkXaY5Nk6DmvvleAPU/swCWidJDILbVh7ebYxCzC2+7Fvs6/zPvAPtSyAQ96sLXkAAAAASUVORK5CYII=";
+
+var spacestationSprite = new Image();
+spacestationSprite.src =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACxklEQVR4Xu1b21HEMAwktEALSXFURHFJC7TAMWROnmEPsZJlO845/B1ObGu1ejqeXir/ret6iyyxLMsUeZ+9W3Xyn8WHAcAq6DzP/ypl2zamtH28FDOKMWA4ADSBUcNWjWpqn98+fg1tn+9/PprLiGwGDAuACL7Mr7sm1u3rX5vVNGM1GZkcmSD/R0Z4meBmwLAAMI15kZf5xGegr9AYVpoJZgYMC4AmuFfj6CgYoCwZKMUEyoBhAagluGgWfcA0Tbsy1HWVqBNlgsqAYQHQwlzU5pkPwPm9PiKXCQ8MuABQ6vdaDJA8QHwAY4qM5+YJKIfKANzI0wNQ2+kxzTKAoz5BqxkSAy4A7raPuTnTDMvYtHEE3LpONE8QJsh6Dwy4ALj37KQ6s2rGygRmy9b12Dy4H8kTDmcA23hzAGo7PyYwYw4DxOsTcL3pAsCY+aUU+X5Sw35rVV/q5UH/X+smMwbgOoxR2QxgAuP46QBg4c8LAJqW1vt78NYQhVLubzwjZD4H95F8wAWAgjwCw35bbVCquWQq5HzBOi97zsyAdCABwAwHAEM0dzzKAKYIzee4GZArIHuvewCs8dda7ZWKAt5opIVjqXXMUYBplDU8ugegVgsM+//RTDDKgOxM0MuAWpngaQHIBTDqi1itcPpq0AqsliI3b4mxXL2UxpnmD+sJDg+AppnSmu+WAd0DUDsf0JxWNwwYFgCrzVjDDnvudrvtX5G3Pn/o5nS4ewDw/D1qo0eFPyZHsy9ETgNAK19QywS8Bz2HfSXWPQClmVDbBLyaF/mafSl6WgAYE2TcGyWiJlAKUMqACwBI6VJLqvCNkVI3S7xMNDMAmVD6ysxpAGAmUfrWmKzH5vVq3hwFtKJGc0Jso6xI0sbZvM0BwI0yr6xpEuex3jPMFRjXc/sALyPw+ae9OhsFpnWnKOwDrLZsNY2jAPgGjQYXfQbG4aMAAAAASUVORK5CYII=";
 
 var w = canvas.width;
 var h = canvas.height;
-var w_ctx = canvas_overlay.width;
-var h_ctx = canvas_overlay.height;
 
 var starColours = ["#ffffff", "#ffe9c4", "#d4fbff"];
-
-function random(min, max) {
-  return Math.round(Math.random() * max - min + min);
-}
 
 var spaceship = {
   maxSpeed: 2.5,
@@ -70,9 +63,27 @@ var spaceship = {
   fuel: 100,
   eva: 50
 };
-function updateSpaceship() {
-  console.log(spaceship.fuel + " " + spaceship.eva);
+var spacestation = {
+  position: {
+    x: 120,
+    y: 40
+  },
+  DockCoords: {
+    x1: 0,
+    x2: 0,
+    x3: 0
+  }
+};
 
+function degreesToRadians(degrees) {
+  return (degrees * Math.PI) / 180;
+}
+
+function random(min, max) {
+  return Math.round(Math.random() * max - min + min);
+}
+
+function updateSpaceship() {
   if (spaceship.position.x < 0) {
     spaceship.position.x = w;
   }
@@ -169,13 +180,13 @@ function drawSpaceship() {
 
 function drawFuel() {
   ctx.beginPath();
-  ctx.rect(w_ctx - spaceship.eva, 5, spaceship.eva, 5);
+  ctx.rect(w - spaceship.eva, 5, spaceship.eva, 5);
   ctx.fillStyle = "#FF0000";
   ctx.fill();
   ctx.closePath();
 
   ctx.beginPath();
-  ctx.rect(w_ctx - spaceship.fuel, 15, spaceship.fuel, 5);
+  ctx.rect(w - spaceship.fuel, 15, spaceship.fuel, 5);
   ctx.fillStyle = "#FF0000";
   ctx.fill();
   ctx.closePath();
@@ -216,29 +227,51 @@ function star_field(context, star_number) {
   context.restore();
 }
 
-function drawSpacstation() {
-  // set origin to center
+function drawSpaceStation(degree) {
+  x = w / 2;
+  y = h / 2;
+  r1 = 32;
+  // first save the untranslated/unrotated context
+  ctx.save();
+
   ctx.beginPath();
-
+  ctx.save();
   ctx.translate(w / 2, h / 2);
+  ctx.rotate(i / 50);
+  ctx.drawImage(spacestationSprite, -32, -32);
 
-  ctx.rotate(i / 100);
-  ctx.rect(-20, -20, 40, 40);
-  ctx.fillStyle = "#FF0000";
-  ctx.fill();
+  ctx.closePath();
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.strokeStyle = "#ff0000";
+  ctx.arc(x, y, r1, 0, 2 * Math.PI, false);
+  ctx.stroke();
   ctx.closePath();
 
-  ctx.rect(20, -5, 10, 10);
-  ctx.fillStyle = "#FF00FF";
-  ctx.fill();
-  ctx.closePath();
-  // rotate + move along x
+  ctx.beginPath();
+  ctx.strokeStyle = "#ff0000";
+  ctx.moveTo(x, y);
+  ctx.lineTo(
+    x + Math.sin(degree - 0.2 - Math.PI) * r1,
+    y + Math.cos(degree - 0.2 - Math.PI) * r1
+  );
+  ctx.lineTo(
+    x + Math.sin(degree - 1.2 + Math.PI) * r1,
+    y + Math.cos(degree - 1.2 + Math.PI) * r1
+  );
 
-  // draw planet
+  ctx.lineTo(x, y);
+  ctx.stroke();
+
+  ctx.closePath();
+  // restore the context to its untranslated/unrotated state
   ctx.restore();
 }
 
 var i = 0;
+var spaceshipRotation = 0;
 
 function init() {
   // create a star field
@@ -247,17 +280,15 @@ function init() {
 
 init();
 
-function collision_detection() {
-  console.log(spaceship.position.x + " " + spaceship.position.y);
-}
+function collision_detection() {}
 
 var redraw = function() {
   ctx.save();
   // paint bg
-
   updateSpaceship();
   drawSpaceship();
-  drawSpacstation();
+  spaceshipRotation = spaceshipRotation - 0.02;
+  drawSpaceStation(spaceshipRotation);
   drawFuel();
   collision_detection();
 
