@@ -39,41 +39,87 @@ var spacestationSprite = new Image();
 spacestationSprite.src =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACxklEQVR4Xu1b21HEMAwktEALSXFURHFJC7TAMWROnmEPsZJlO845/B1ObGu1ejqeXir/ret6iyyxLMsUeZ+9W3Xyn8WHAcAq6DzP/ypl2zamtH28FDOKMWA4ADSBUcNWjWpqn98+fg1tn+9/PprLiGwGDAuACL7Mr7sm1u3rX5vVNGM1GZkcmSD/R0Z4meBmwLAAMI15kZf5xGegr9AYVpoJZgYMC4AmuFfj6CgYoCwZKMUEyoBhAagluGgWfcA0Tbsy1HWVqBNlgsqAYQHQwlzU5pkPwPm9PiKXCQ8MuABQ6vdaDJA8QHwAY4qM5+YJKIfKANzI0wNQ2+kxzTKAoz5BqxkSAy4A7raPuTnTDMvYtHEE3LpONE8QJsh6Dwy4ALj37KQ6s2rGygRmy9b12Dy4H8kTDmcA23hzAGo7PyYwYw4DxOsTcL3pAsCY+aUU+X5Sw35rVV/q5UH/X+smMwbgOoxR2QxgAuP46QBg4c8LAJqW1vt78NYQhVLubzwjZD4H95F8wAWAgjwCw35bbVCquWQq5HzBOi97zsyAdCABwAwHAEM0dzzKAKYIzee4GZArIHuvewCs8dda7ZWKAt5opIVjqXXMUYBplDU8ugegVgsM+//RTDDKgOxM0MuAWpngaQHIBTDqi1itcPpq0AqsliI3b4mxXL2UxpnmD+sJDg+AppnSmu+WAd0DUDsf0JxWNwwYFgCrzVjDDnvudrvtX5G3Pn/o5nS4ewDw/D1qo0eFPyZHsy9ETgNAK19QywS8Bz2HfSXWPQClmVDbBLyaF/mafSl6WgAYE2TcGyWiJlAKUMqACwBI6VJLqvCNkVI3S7xMNDMAmVD6ysxpAGAmUfrWmKzH5vVq3hwFtKJGc0Jso6xI0sbZvM0BwI0yr6xpEuex3jPMFRjXc/sALyPw+ae9OhsFpnWnKOwDrLZsNY2jAPgGjQYXfQbG4aMAAAAASUVORK5CYII=";
 
+var letters = (letters = {
+  A: [[, 1], [1, , 1], [1, , 1], [1, 1, 1], [1, , 1]],
+  B: [[1, 1], [1, , 1], [1, 1, 1], [1, , 1], [1, 1]],
+  C: [[1, 1, 1], [1], [1], [1], [1, 1, 1]],
+  D: [[1, 1], [1, , 1], [1, , 1], [1, , 1], [1, 1]],
+  E: [[1, 1, 1], [1], [1, 1, 1], [1], [1, 1, 1]],
+  F: [[1, 1, 1], [1], [1, 1], [1], [1]],
+  G: [[, 1, 1], [1], [1, , 1, 1], [1, , , 1], [, 1, 1]],
+  H: [[1, , 1], [1, , 1], [1, 1, 1], [1, , 1], [1, , 1]],
+  I: [[1, 1, 1], [, 1], [, 1], [, 1], [1, 1, 1]],
+  J: [[1, 1, 1], [, , 1], [, , 1], [1, , 1], [1, 1, 1]],
+  K: [[1, , , 1], [1, , 1], [1, 1], [1, , 1], [1, , , 1]],
+  L: [[1], [1], [1], [1], [1, 1, 1]],
+  M: [
+    [1, 1, 1, 1, 1],
+    [1, , 1, , 1],
+    [1, , 1, , 1],
+    [1, , , , 1],
+    [1, , , , 1]
+  ],
+  N: [[1, , , 1], [1, 1, , 1], [1, , 1, 1], [1, , , 1], [1, , , 1]],
+  O: [[1, 1, 1], [1, , 1], [1, , 1], [1, , 1], [1, 1, 1]],
+  P: [[1, 1, 1], [1, , 1], [1, 1, 1], [1], [1]],
+  Q: [[0, 1, 1], [1, , , 1], [1, , , 1], [1, , 1, 1], [1, 1, 1, 1]],
+  R: [[1, 1], [1, , 1], [1, , 1], [1, 1], [1, , 1]],
+  S: [[1, 1, 1], [1], [1, 1, 1], [, , 1], [1, 1, 1]],
+  T: [[1, 1, 1], [, 1], [, 1], [, 1], [, 1]],
+  U: [[1, , 1], [1, , 1], [1, , 1], [1, , 1], [1, 1, 1]],
+  V: [[1, , , , 1], [1, , , , 1], [, 1, , 1], [, 1, , 1], [, , 1]],
+  W: [[1, , , , 1], [1, , , , 1], [1, , , , 1], [1, , 1, , 1], [1, 1, 1, 1, 1]],
+  X: [[1, , , , 1], [, 1, , 1], [, , 1], [, 1, , 1], [1, , , , 1]],
+  Y: [[1, , 1], [1, , 1], [, 1], [, 1], [, 1]],
+  Z: [[1, 1, 1, 1, 1], [, , , 1], [, , 1], [, 1], [1, 1, 1, 1, 1]],
+  "0": [[1, 1, 1], [1, , 1], [1, , 1], [1, , 1], [1, 1, 1]],
+  "1": [[, 1], [, 1], [, 1], [, 1], [, 1]],
+  "2": [[1, 1, 1], [0, 0, 1], [1, 1, 1], [1, 0, 0], [1, 1, 1]],
+  "3": [[1, 1, 1], [0, 0, 1], [1, 1, 1], [0, 0, 1], [1, 1, 1]],
+  "4": [[1, 0, 1], [1, 0, 1], [1, 1, 1], [0, 0, 1], [0, 0, 1]],
+  "5": [[1, 1, 1], [1, 0, 0], [1, 1, 1], [0, 0, 1], [1, 1, 1]],
+  "6": [[1, 1, 1], [1, 0, 0], [1, 1, 1], [1, 0, 1], [1, 1, 1]],
+  "7": [[1, 1, 1], [0, 0, 1], [0, 0, 1], [0, 0, 1], [0, 0, 1]],
+  "8": [[1, 1, 1], [1, 0, 1], [1, 1, 1], [1, 0, 1], [1, 1, 1]],
+  "9": [[1, 1, 1], [1, 0, 1], [1, 1, 1], [0, 0, 1], [1, 1, 1]],
+  " ": [[, ,], [, ,], [, ,], [, ,], [, ,]]
+});
+
+function draw(string, size) {
+  var needed = [];
+  string = string.toUpperCase(); // because I only did uppercase letters
+  for (var i = 0; i < string.length; i++) {
+    var letter = letters[string.charAt(i)];
+    if (letter) {
+      // because there's letters I didn't do
+      needed.push(letter);
+    }
+  }
+
+  ctx.fillStyle = "white";
+  var currX = 0;
+  for (i = 0; i < needed.length; i++) {
+    letter = needed[i];
+    var currY = 0;
+    var addX = 0;
+    for (var y = 0; y < letter.length; y++) {
+      var row = letter[y];
+      for (var x = 0; x < row.length; x++) {
+        if (row[x]) {
+          ctx.fillRect(currX + x * size, currY, size, size);
+        }
+      }
+      addX = Math.max(addX, row.length * size);
+      currY += size;
+    }
+    currX += size + addX;
+  }
+}
+
 var w = canvas.width;
 var h = canvas.height;
 
 var starColours = ["#ffffff", "#ffe9c4", "#d4fbff"];
-
-var spaceship = {
-  maxSpeed: 2.5,
-  position: {
-    x: 0,
-    y: 0
-  },
-  velocity: {
-    x: 0,
-    y: 0
-  },
-  height: 18,
-  width: 18,
-  angle: 0,
-  engineOn: false,
-  rotatingLeft: false,
-  rotatingRight: false,
-  fuel: 100,
-  eva: 50
-};
-var spacestation = {
-  position: {
-    x: 120,
-    y: 40
-  },
-  DockCoords: {
-    x1: 0,
-    x2: 0,
-    x3: 0
-  }
-};
 
 function degreesToRadians(degrees) {
   return (degrees * Math.PI) / 180;
@@ -82,6 +128,54 @@ function degreesToRadians(degrees) {
 function random(min, max) {
   return Math.round(Math.random() * max - min + min);
 }
+
+var spaceship = {
+  maxSpeed: 2.5,
+  position: {
+    x: random(10, 230),
+    y: random(10, 230)
+  },
+  velocity: {
+    x: Math.random() * 0.2,
+    y: Math.random() * 0.2
+  },
+  height: 18,
+  width: 18,
+  angle: random(0, 360),
+  engineOn: false,
+  rotatingLeft: false,
+  rotatingRight: false,
+  fuel: 100,
+  eva: 50
+};
+var spacestation = {
+  position: {
+    x: random(40, 200),
+    y: random(40, 200)
+  },
+  gate1: {
+    x: 0,
+    y: 0
+  },
+  gate2: {
+    x: 0,
+    y: 0
+  }
+};
+
+function keepDistance() {
+  var distanceX = spaceship.position.x - spacestation.position.x;
+  var distanceY = spaceship.position.y - spacestation.position.y;
+
+  var c = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+  if (c < 50) {
+    spacestation.position.x = random(40, 200);
+    spacestation.position.y = random(40, 200);
+    keepDistance();
+  }
+}
+
+keepDistance();
 
 function updateSpaceship() {
   if (spaceship.position.x < 0) {
@@ -228,43 +322,41 @@ function star_field(context, star_number) {
 }
 
 function drawSpaceStation(degree) {
-  x = w / 2;
-  y = h / 2;
   r1 = 32;
   // first save the untranslated/unrotated context
   ctx.save();
 
   ctx.beginPath();
   ctx.save();
-  ctx.translate(w / 2, h / 2);
+  ctx.translate(spacestation.position.x, spacestation.position.y);
   ctx.rotate(i / 50);
   ctx.drawImage(spacestationSprite, -32, -32);
 
   ctx.closePath();
   ctx.restore();
 
-  ctx.save();
   ctx.beginPath();
-  ctx.strokeStyle = "#ff0000";
-  ctx.arc(x, y, r1, 0, 2 * Math.PI, false);
-  ctx.stroke();
-  ctx.closePath();
-
-  ctx.beginPath();
-  ctx.strokeStyle = "#ff0000";
-  ctx.moveTo(x, y);
+  ctx.moveTo(spacestation.position.x, spacestation.position.y);
   ctx.lineTo(
-    x + Math.sin(degree - 0.2 - Math.PI) * r1,
-    y + Math.cos(degree - 0.2 - Math.PI) * r1
+    spacestation.position.x + Math.sin(degree - 0.2 - Math.PI) * r1,
+    spacestation.position.y + Math.cos(degree - 0.2 - Math.PI) * r1
   );
+  spacestation.gate1.x =
+    spacestation.position.x + Math.sin(degree - 0.2 - Math.PI) * r1;
+  spacestation.gate1.y =
+    spacestation.position.y + Math.cos(degree - 0.2 - Math.PI) * r1;
+
   ctx.lineTo(
-    x + Math.sin(degree - 1.2 + Math.PI) * r1,
-    y + Math.cos(degree - 1.2 + Math.PI) * r1
+    spacestation.position.x + Math.sin(degree - 1.2 + Math.PI) * r1,
+    spacestation.position.y + Math.cos(degree - 1.2 + Math.PI) * r1
   );
 
-  ctx.lineTo(x, y);
-  ctx.stroke();
+  spacestation.gate2.x =
+    spacestation.position.x + Math.sin(degree - 1.2 + Math.PI) * r1;
+  spacestation.gate2.y =
+    spacestation.position.y + Math.cos(degree - 1.2 + Math.PI) * r1;
 
+  ctx.lineTo(spacestation.position.x, spacestation.position.y);
   ctx.closePath();
   // restore the context to its untranslated/unrotated state
   ctx.restore();
@@ -273,14 +365,48 @@ function drawSpaceStation(degree) {
 var i = 0;
 var spaceshipRotation = 0;
 
-function init() {
-  // create a star field
+function initGameBg() {
   star_field(ctx3, 200);
 }
 
-init();
+function triangle_area(x1, y1, x2, y2, x3, y3) {
+  return Math.abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0);
+}
 
-function collision_detection() {}
+function isInside(x1, y1, x2, y2, x3, y3, x, y) {
+  /* Calculate area of triangle ABC */
+  var A = triangle_area(x1, y1, x2, y2, x3, y3);
+
+  /* Calculate area of triangle PBC */
+  var A1 = triangle_area(x, y, x2, y2, x3, y3);
+
+  /* Calculate area of triangle PAC */
+  var A2 = triangle_area(x1, y1, x, y, x3, y3);
+
+  /* Calculate area of triangle PAB */
+  var A3 = triangle_area(x1, y1, x2, y2, x, y);
+
+  /* Check if sum of A1, A2 and A3 is same as A */
+  return A == A1 + A2 + A3;
+}
+var stopAnim = false;
+function collision_detection() {
+  if (
+    isInside(
+      spacestation.position.x,
+      spacestation.position.y,
+      spacestation.gate1.x,
+      spacestation.gate1.y,
+      spacestation.gate2.x,
+      spacestation.gate2.y,
+      spaceship.position.x,
+      spaceship.position.y
+    )
+  ) {
+    stopAnim = true;
+    winScreen();
+  }
+}
 
 var redraw = function() {
   ctx.save();
@@ -295,11 +421,66 @@ var redraw = function() {
   if (spaceship.fuel <= 0 && spaceship.eva <= 0) {
     console.log("game over");
   }
-
+  if (stopAnim) {
+    return;
+  }
   i++;
   window.requestAnimationFrame(redraw);
 };
-window.requestAnimationFrame(redraw);
+
+var onLoadScreen = true;
+//Load Screen Function
+function loadScreen() {
+  initGameBg();
+  ctx.save();
+  ctx.translate(20, 100);
+  draw("Autopilot offline", 3);
+  ctx.restore();
+  ctx.save();
+  ctx.translate(30, 130);
+  draw("your ships autopilot has malfunctioned you have", 1);
+  ctx.restore();
+  ctx.save();
+  ctx.translate(45, 140);
+  draw("to land before your fuel and eva runs out", 1);
+  ctx.restore();
+  ctx.save();
+  ctx.translate(55, 170);
+  draw("Use up to thrust and left and right", 1);
+  ctx.restore();
+  ctx.save();
+  ctx.translate(62, 180);
+  draw("to rotate to control your angle", 1);
+  ctx.restore();
+  ctx.save();
+  ctx.translate(60, 200);
+  draw("Press up to start!!", 2);
+  ctx.restore();
+}
+
+loadScreen();
+
+function winScreen() {
+  ctx.clearRect(0, 0, w, h);
+
+  initGameBg();
+
+  ctx.save();
+  ctx.translate(20, 100);
+  draw("Congratulations", 3);
+  ctx.restore();
+  ctx.save();
+  ctx.translate(30, 130);
+  draw("congratulation", 1);
+  ctx.restore();
+}
+
+//startGame Function
+function startGame() {
+  ctx.restore();
+  window.requestAnimationFrame(redraw);
+  initGameBg();
+}
 
 function keyPressed(event) {
   switch (event.keyCode) {
@@ -312,6 +493,10 @@ function keyPressed(event) {
       spaceship.rotatingRight = true;
       break;
     case 38:
+      if (onLoadScreen == true) {
+        startGame();
+        onLoadScreen = false;
+      }
       // Up Arrow key
       spaceship.engineOn = true;
       break;
@@ -330,7 +515,6 @@ function keyLetGo(event) {
       spaceship.rotatingRight = false;
       break;
     case 38:
-      // Up Arrow key
       spaceship.engineOn = false;
       break;
   }

@@ -7,10 +7,10 @@ Todo [29/08/18]
 - [x] Add fuel counter, via code and visual display
 - [x] ship should just float if you run out of fuel, start timer for about 2 seconds to end game
 - [x] make station a hexagon and not bright red
-- [ ] collision detection :(
+- [x] collision detection :(
 - [ ] initial load screen
 - [ ] ship engine flame
-- [ ] randomise start location and position of the station
+- [x] randomise start location and position of the station
 
 final design passover
 
