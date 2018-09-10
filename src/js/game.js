@@ -466,12 +466,20 @@ function winScreen() {
   initGameBg();
 
   ctx.save();
-  ctx.translate(20, 100);
+  ctx.translate(30, 100);
   draw("Congratulations", 3);
   ctx.restore();
   ctx.save();
-  ctx.translate(30, 130);
-  draw("congratulation", 1);
+  ctx.translate(50, 130);
+  draw("congratulations you landed your ship", 1);
+  ctx.restore();
+  ctx.save();
+  ctx.translate(80, 140);
+  draw(" enjoy some space beer!", 1);
+  ctx.restore();
+  ctx.save();
+  ctx.translate(80, 180);
+  draw("press up to start again", 1);
   ctx.restore();
 }
 
