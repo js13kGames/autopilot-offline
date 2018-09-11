@@ -5,35 +5,35 @@ var ctx3 = game_background.getContext("2d");
 
 var spaceshipSprite = new Image();
 spaceshipSprite.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAgUlEQVQ4T2NkoBAwUqifAcOAmhSL/y1zThBtMIpCkGaYi4g1BGwAskZ8XsJmKCMuzWdO3GAwsdDAah6yQRgGgDSCALrmKUtOMOTEWKAYCDIIxQBcmkG6QAaAALoh1DUAZANFXkD2INGBSHE0IttKdkJCN4TYVAjSR3Sax5VCKTYAANMHSj/Q7yHfAAAAAElFTkSuQmCC";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAmUlEQVQ4T2NkoBAwUqifAW7Ajh07/sMM8/DwINpgsEKYZgUFBYYHDx6AzSHWEEZsmnF5C5uhYAOQbYZpXrBgAUNCQgJWs5ANgrsAWSOIja7Z48cHhh0cAigGggxCMQBkK7JmkMtgQOPGBTDzhoYBmIaFFXUNAJmM7gp41OLzAlUCEZsh6FGANRopTkgwWyhKypRkKKIzDS5LAMVPZF9LV4F+AAAAAElFTkSuQmCC";
 
 var spaceshipSprite90 = new Image();
 spaceshipSprite90.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAkElEQVQ4T2NkwAJqUiz+YxNvmXOCEV0cQwCXZphGdEOoawC67WdO3ABbbGKhgeJyZFfAXYBLM0wnLkNQvIBsCMh2mCZkNshArC6A2QQyBF0DSA4mRttABNk0sNGI7IIpS06gRF1OjAWYTzAMsBmCSzNILUZKxBcOROUF5OhE9gM2zThdgM0VJBuAbAguzSA1AEYOWBF3vw7NAAAAAElFTkSuQmCC";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAqUlEQVQ4T9WTvRHAIAiFY5cyIziOYziaYziOI6RMlxzePe+Bf3WshPA+EIg7zMk5v9bHdgjBsa0MiL33RylFcdjHkAZYiUEaQRTAZk4pVW2MsVWDGFTRVYBIiGEzRHwdQJzcQAFAxHcWy101ERArED98yynYKuS9cngiPwKE51aLlM+r2tsncB8AmYmHU2CAbaLNPgUAwoCReAtY/YX41i0Si7CZs+wS+wFDwXkR1F6BpQAAAABJRU5ErkJggg==";
 
 var spaceshipSprite180 = new Image();
 spaceshipSprite180.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAfklEQVQ4T2NkoBAwUqifgSQDalIs/rfMOYGih2gDQJphrkU2BKsByIrxeRFkEIoBuDSeOXGDwcRCA6tZYAPQNU5ZcoIhJ8YCRQPIEBBAN4gRm2aQQnQDQGLYDKHcAIq9gOxRsgMRPXjJjkZ8cU5SQsJlEEVJGZehROcFXAYAAP3nQpsAevEHAAAAAElFTkSuQmCC";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAkUlEQVQ4T6XTsQ2AIBAF0KOzdARKSse4MRiNMRjDkpIRLO00dwkGCBjgqPmPfDgUCJcS5mEK8N4/6UBE5OwwkMJaa4gxskNIE8hPalXMkQLoBZ1zYK0trIQwUAfxvsBvexEghFYNqbwbbTDh5I3BHB+QOrcQOSCukBddvsT6qZaf8W+spwapB4lGuYcO/4Ue8AKKHF9JrVmWNQAAAABJRU5ErkJggg==";
 
 var spaceshipSprite270 = new Image();
 spaceshipSprite270.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAh0lEQVQ4T2NkwANqUiz+g6Rb5pxgxKUMpwRMM0wjLkNoYwC67fhcgdUFVDNgypITYMtzYizANLZwwHABzHaYZpjzcRmC0wBc0YbuikFqwJkTNxhMLDRQfAETw+sF5OhDNgTdQGRD4GGAHvcgTcgA3UUwQ6hnAMg2XK7AZTtIzyCMRmxewZcbAWBPYxOQyKZ7AAAAAElFTkSuQmCC";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAq0lEQVQ4T82TwRGAIAwE9efTEiiHMiiNMiiHEnz60wnDMUdMeJuPM8Itl3Ds26JKKY8sxxh3b5u7ADGEHmQJCCE0fa3VdWECcDoDvFaWgHhfzUE5zva12vgAxuC6GDPwIC5AhLoFy8VPATnnLaU0ZQf/9CCnFjg8DNFAhgyATp6IuLQjQCaATF1ShwKExdhjAnB1DGEXfMAH0BLXX592osHmDEbiOsR7vvoWXkPxeRGk03K5AAAAAElFTkSuQmCC";
 
 var spaceshipSprite45 = new Image();
 spaceshipSprite45.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABIUlEQVQ4T6WTTU7DMBCFn9u7AGuKqHMXdnjJDRpWBK7AguyRehFKFSGxQWXDMfiJGg+aaU3HsVOQsBQpHns+v3keG/xzmH5+6aYEJGGJXNWLZCEKlM7SfkEGVf0Q5fxMLp2lkO395s8Y/nb7cypkVct+/2jx8vwmgBN7FAli7HWvDAHMnCX+4ZOflq9JFRpU5QEFGdAgQKvJAoJ5RCQ1N4uVqDg+PZC59oHjGrL1YOe+LmMyPYySO08Yj0x0pQkgGMAqNOCrXeNu3uDizMLD4GZ7nYMA7eRnu0Y9byTEAB7hRjKdWFDwgrd1ncft/TJK3sAJVf2ouiTTgmyuJ8JoYBubmTZ9D1SeF+TBkHyT/woIabl3wr3/Z4A+v3SFPBZ+WN9ckoI92Gl+IwAAAABJRU5ErkJggg==";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAqUlEQVQ4T6WUQRLAEAxF2XXZW3EMR3MMbtVld+3ENCZImsywMsZ//k/g3ebwm3q3AEopDweNMbKHDYtUHELonFprm3OQDpBOpm5EwCzOOTddSmlJM0OaAwpAMVVSkAiAzJCVA1A3KgA2/0WYi9kjoAMLgEKWGmB2cDEXMd6XK8c5tNTcRhC3gn8AdGG6iZxYBND2aZcLOqI+Jg2iAtCRBDIDuGimCNp/8QIrlmFh0/jZJgAAAABJRU5ErkJggg==";
 
 var spaceshipSprite135 = new Image();
 spaceshipSprite135.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4T6WTQW7CMBBFx0kFhWOwoWJTCUUlXIQF24QFV4DsGm7AMsvepQEBa9rDeKpvYncSTEBiFkmc+D//cb4VPVnKp8/SmOV7JkzDlSkvdjXNQwAJg+CzKJ3uLoCZiSs/QfA/Pa8gV4AsnTLsorRmguhQns149D6gfq9TGbq0cwVYJzHbt1YoWxh/DA0UBRc3HfjEELUC5O6jdxTup/2veY7iNzNW1bo1B1kyZU2aWDOFYeBcQ3Dc/TiAbKcGWCUxo7XtV0npLKLXzoubi3awerMcQFoHALWYRdQVkKbY5sFsYjN5FrKcTygU/x67guaQybz4NlovwGf11pFRMjhykiZFIXEttj6IB8DG4kbkve3AmhZs+my+2wTNb3+gMH4RrhfvYwAAAABJRU5ErkJggg==";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAp0lEQVQ4T6XUMRKEIAwFUOgsvRUcg6NxDLiVpd063zFMiEnGHags/I8koDEsrriYDybQWvtpeM55yqgAhVNKw+i9j2eOuIDXHiEvQCu91npbpZTJBOICFOQpjriAFqYqMBvM5AVYk5ctqIAVxq5/Afk8Qtv2aVgA5ADxwmiB7w4ASyLySKdjlOV7iHoTvf6pVOtSxZUwUBOQpZoV3AN7vryvIY4t/w8uwV1jE5vOMHwAAAAASUVORK5CYII=";
 
 var spaceshipSprite225 = new Image();
 spaceshipSprite225.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABKklEQVQ4T5WTTU7DMBCF3zio/ByDDYgNUhUV9yKVWGMWXIGWVdMbsAw77tIUQdeFu9BBY2capzFRaymyHOu9+fw8JgCYuTHLXJRLkvmYQdMHy5SQFWV1kBnNnPXV98eWAQNC8dZP5av8b8IwROijqQ3uGGiIX98rD/R0P0KWGcgeM4O8WZvIq6bOsspV7CY5zgYnvXkK2a7ssxuzAUMMHic5TmuxVP5afSO31x2zlsGLsyxp/m4ZmWmOowaiHo6uYKK9lkEqTBHLt/748dWFQrMIfRMdQfn0Rj6rTfL8SsEgLMplt4XiK02ZNAbAIkUQ34giqNHN7SUuzgf1b0ZRrroEGqaKQw5hpQFKxPO61Tv9Hh5Wsrt3mcSdmXww+xRNmgE7TvegF9fXjn/i1X8Rz+3TjgAAAABJRU5ErkJggg==";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAArklEQVQ4T6WTPQ7AIAiFdevYW+kxPJrH0Ft1dGuDCYbyYzVl0aZ5n8AD736GB30p5YYzxti/d8KjmItWYSYAgV+gVwlW6jOICojt6qxynILJYQIwE1MagkbXhxPtEi/nnF1KSc1GALQ+AAACISEEV2vttr98tyxdBtChQhHPCLIwM6AAuGsQ2gtRAgfg67wEOmTq7Fu9mNpIfyIAasWArmvjbW7f6pJtry935TfgAZzGYxMjRFNzAAAAAElFTkSuQmCC";
 
 var spaceshipSprite315 = new Image();
 spaceshipSprite315.src =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAABHElEQVQ4T6WTTU6EQBCFX/Vh1LVjpL2LS5bewHGHXsGFsHUxFxENMXEz0Y3H8IcMXaaKNNMwPYBaCSQdeF+9+mnCP4P+ol+mlpmB66Kk2YDL1DKBAYQS6p2iZq5Syw0IRsXDmACI1bESszwoYZmeqUU3MNk4xu39o3Iuzm2P1wHE5liq73qDu1W1A+kAMatV+YoTe9Rl/Ko3yFeVunAM3BSldlNfQ4CIJRbJISgYVNM4kJGGGmTFwy5AhisCDzg+PegAIUise2s9B84xnp/eoo1vyyFkeZv5VwDfC799EUDCfsM+PmusX971HxGKK2N80j0Oho0UkXaY5Nk6DmvvleAPU/swCWidJDILbVh7ebYxCzC2+7Fvs6/zPvAPtSyAQ96sLXkAAAAASUVORK5CYII=";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAApklEQVQ4T6WTsQ3EIBAEIfvwu4IyKI0yoCuHzvw6pEXAr72WfQEJmrlbTnj3svwTvpRyGBdj9LcFgNaGUnAGQnQpUDCNwKC4b61h+XynBJNAdiOSLmBwztmllOaO+9anMNgu22GCEIKrtTbAYKtVMNpeCQDTCdB93TemGeFJAIAJxihSoN6ACvCQ6l+scI8AcFynbQWF7UjB1SQM/ptARWD38jcq6Q/cTWFhP4NJPwAAAABJRU5ErkJggg==";
 
 var spacestationSprite = new Image();
 spacestationSprite.src =
@@ -116,18 +116,15 @@ function draw(string, size) {
   }
 }
 
+//variables
+
 var w = canvas.width;
 var h = canvas.height;
 
+var onLoadScreen = true;
+var onWinScreen = false;
+var onGameoverScreen = false;
 var starColours = ["#ffffff", "#ffe9c4", "#d4fbff"];
-
-function degreesToRadians(degrees) {
-  return (degrees * Math.PI) / 180;
-}
-
-function random(min, max) {
-  return Math.round(Math.random() * max - min + min);
-}
 
 var spaceship = {
   maxSpeed: 2.5,
@@ -146,8 +143,9 @@ var spaceship = {
   rotatingLeft: false,
   rotatingRight: false,
   fuel: 100,
-  eva: 50
+  eva: 100
 };
+
 var spacestation = {
   position: {
     x: random(40, 200),
@@ -162,6 +160,89 @@ var spacestation = {
     y: 0
   }
 };
+
+//helper functions and imported functions
+
+function degreesToRadians(degrees) {
+  return (degrees * Math.PI) / 180;
+}
+
+function random(min, max) {
+  return Math.round(Math.random() * max - min + min);
+}
+
+// create the audio context
+var ac =
+    typeof AudioContext !== "undefined"
+      ? new AudioContext()
+      : new webkitAudioContext(),
+  // get the current Web Audio timestamp (this is when playback should begin)
+  when = ac.currentTime,
+  // set the tempo
+  tempo = 132,
+  // initialize some vars
+  sequence1,
+  sequence2,
+  sequence3,
+  // create an array of "note strings" that can be passed to a sequence
+  lead = ["C4 w", "G3 w", "A#3 w", "F3 w"],
+  harmony = [
+    "-   e",
+    "C5  e",
+    "D#5 e",
+    "D4  e",
+    "G5 e",
+    "C5  e",
+    "D#5 e",
+    "G5 e",
+
+    "G3  e",
+    "A3  e",
+    "Bb3 e",
+    "A3  e",
+    "G3  e",
+    "A3  e",
+    "F3  q"
+  ],
+  bass = ["C3  w", "G2  w", "A#2  w", "F2  w"];
+
+// create 3 new sequences (one for lead, one for harmony, one for bass)
+sequence1 = new TinyMusic.Sequence(ac, tempo, lead);
+sequence2 = new TinyMusic.Sequence(ac, tempo, harmony);
+sequence3 = new TinyMusic.Sequence(ac, tempo, bass);
+
+// set staccato and smoothing values for maximum coolness
+sequence1.staccato = 0.55;
+sequence2.staccato = 0.55;
+sequence3.staccato = 0.05;
+sequence3.smoothing = 0.4;
+
+// adjust the levels so the bass and harmony aren't too loud
+sequence1.gain.gain.value = 1.0 / 2;
+sequence2.gain.gain.value = 0.8 / 2;
+sequence3.gain.gain.value = 0.65 / 2;
+
+// apply EQ settings
+sequence1.mid.frequency.value = 800;
+sequence1.mid.gain.value = 3;
+sequence2.mid.frequency.value = 1200;
+sequence3.mid.gain.value = 3;
+sequence3.bass.gain.value = 6;
+sequence3.bass.frequency.value = 80;
+sequence3.mid.gain.value = -6;
+sequence3.mid.frequency.value = 500;
+sequence3.treble.gain.value = -2;
+sequence3.treble.frequency.value = 1400;
+
+function startSoundtrack() {
+  when = ac.currentTime;
+  //start the lead part immediately
+  sequence1.play(when);
+  // delay the harmony by 16 beats
+  sequence2.play(when + (60 / tempo) * 16);
+  // start the bass part immediately
+  sequence3.play(when);
+}
 
 function keepDistance() {
   var distanceX = spaceship.position.x - spacestation.position.x;
@@ -178,6 +259,8 @@ function keepDistance() {
 keepDistance();
 
 function updateSpaceship() {
+  spaceship.eva = spaceship.eva - 0.07;
+
   if (spaceship.position.x < 0) {
     spaceship.position.x = w;
   }
@@ -200,19 +283,19 @@ function updateSpaceship() {
   const cos = Math.cos(degreesToRadians(spaceship.angle));
   const sin = Math.sin(degreesToRadians(spaceship.angle));
 
-  if (spaceship.eva >= 0) {
+  if (spaceship.fuel >= 0) {
     if (spaceship.rotatingRight) {
       if (spaceship.angle >= 360) {
         spaceship.angle = 0;
       }
       spaceship.angle += 4;
-      spaceship.eva = spaceship.eva - 0.05;
+      spaceship.fuel = spaceship.fuel - 0.1;
     } else if (spaceship.rotatingLeft) {
       if (spaceship.angle <= -360) {
         spaceship.angle = 0;
       }
       spaceship.angle -= 4;
-      spaceship.eva = spaceship.eva - 0.1;
+      spaceship.fuel = spaceship.fuel - 0.1;
     }
   }
 
@@ -273,15 +356,25 @@ function drawSpaceship() {
 }
 
 function drawFuel() {
+  ctx.save();
+  ctx.translate(220, 5);
+  draw("Fuel!", 1);
+  ctx.restore();
+
   ctx.beginPath();
-  ctx.rect(w - spaceship.eva, 5, spaceship.eva, 5);
-  ctx.fillStyle = "#FF0000";
+  ctx.rect(w - spaceship.fuel, 12, spaceship.fuel, 5);
+  ctx.fillStyle = "#3b6d0c";
   ctx.fill();
   ctx.closePath();
 
+  ctx.save();
+  ctx.translate(220, 20);
+  draw("Air", 1);
+  ctx.restore();
+
   ctx.beginPath();
-  ctx.rect(w - spaceship.fuel, 15, spaceship.fuel, 5);
-  ctx.fillStyle = "#FF0000";
+  ctx.rect(w - spaceship.eva, 27, spaceship.eva, 5);
+  ctx.fillStyle = "#1F538A";
   ctx.fill();
   ctx.closePath();
 }
@@ -418,8 +511,8 @@ var redraw = function() {
   drawFuel();
   collision_detection();
 
-  if (spaceship.fuel <= 0 && spaceship.eva <= 0) {
-    console.log("game over");
+  if (spaceship.fuel <= 0 || spaceship.eva <= 0) {
+    gameoverScreen();
   }
   if (stopAnim) {
     return;
@@ -428,7 +521,6 @@ var redraw = function() {
   window.requestAnimationFrame(redraw);
 };
 
-var onLoadScreen = true;
 //Load Screen Function
 function loadScreen() {
   initGameBg();
@@ -456,11 +548,31 @@ function loadScreen() {
   ctx.translate(60, 200);
   draw("Press up to start!!", 2);
   ctx.restore();
+
+  startSoundtrack();
 }
 
 loadScreen();
 
+function gameoverScreen() {
+  onGameoverScreen = true;
+  ctx.clearRect(0, 0, w, h);
+  ctx.save();
+  ctx.translate(95, 100);
+  draw("Oh no..", 3);
+  ctx.restore();
+  ctx.save();
+  ctx.translate(70, 130);
+  draw(" you ran out of fuel or air", 1);
+  ctx.restore();
+  ctx.save();
+  ctx.translate(85, 180);
+  draw("press up to try again", 1);
+  ctx.restore();
+}
+
 function winScreen() {
+  onWinScreen = true;
   ctx.clearRect(0, 0, w, h);
 
   initGameBg();
@@ -504,6 +616,10 @@ function keyPressed(event) {
       if (onLoadScreen == true) {
         startGame();
         onLoadScreen = false;
+      } else if (onWinScreen == true) {
+        location.reload();
+      } else if (onGameoverScreen == true) {
+        location.reload();
       }
       // Up Arrow key
       spaceship.engineOn = true;
