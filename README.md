@@ -20,8 +20,10 @@ final design passover
 - [x] restart game on gameover
 
 
-#thanks
+# thanks
 
 thanks to
+
 @lucaspenney - js13k-toolkit https://github.com/lucaspenney/js13k-toolkit
+
 @kevincennis - TinyMusic https://github.com/kevincennis/TinyMusic
